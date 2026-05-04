@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Legends Info</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Mobile Legends Hero Info</h1>
+
+<input type="text" id="search" placeholder="Cari hero...">
+
+<div class="filter">
+  <button onclick="filterRole('all')">All</button>
+  <button onclick="filterRole('Fighter')">Fighter</button>
+  <button onclick="filterRole('Tank')">Tank</button>
+  <button onclick="filterRole('Mage')">Mage</button>
+  <button onclick="filterRole('Assassin')">Assassin</button>
+  <button onclick="filterRole('Marksman')">Marksman</button>
+  <button onclick="filterRole('Support')">Support</button>
+</div>
+
+<div class="container">
+
+  <div class="card" data-role="Fighter" onclick="showHero('Alucard')">
+    <img src="alucard.jpg">
+    <p>Alucard</p>
+  </div>
+
+  <div class="card" data-role="Tank" onclick="showHero('Tigreal')">
+    <img src="tigreal.jpg">
+    <p>Tigreal</p>
+  </div>
+
+  <div class="card" data-role="Mage" onclick="showHero('Eudora')">
+    <img src="eudora.jpg">
+    <p>Eudora</p>
+  </div>
+
+  <div class="card" data-role="Assassin" onclick="showHero('Gusion')">
+    <img src="gusion.jpg">
+    <p>Gusion</p>
+  </div>
+
+  <div class="card" data-role="Marksman" onclick="showHero('Miya')">
+    <img src="miya.jpg">
+    <p>Miya</p>
+  </div>
+
+  <div class="card" data-role="Support" onclick="showHero('Rafaela')">
+    <img src="rafaela.jpg">
+    <p>Rafaela</p>
+  </div>
+
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+  <div class="popup-content">
+    <h3 id="judul"></h3>
+    <img id="gambarHero" src="">
+    <p id="info"></p>
+    <button onclick="closePopup()">Tutup</button>
+  </div>
+</div>
+
+<footer>
+  Gusti Dimas | Irsal Rezky | Dzul Jihad
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
