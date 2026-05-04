@@ -1,145 +1,151 @@
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:system-ui, Arial;
+body {
+  font-family: Arial;
+  color: white;
+  text-align: center;
+
+  /* BACKGROUND GAMBAR */
+  background: url("bg.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-body{
-  min-height:100vh;
-  color:white;
-  text-align:center;
-  background:url("bg.jpg") center/cover no-repeat fixed;
+/* overlay biar gelap elegan */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
 }
 
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.65);
-  z-index:-1;
-}
-
-/* TITLE */
-h1{
-  margin:20px;
-  font-size:28px;
-}
-
-/* SEARCH */
-#search{
-  padding:10px;
-  width:80%;
-  max-width:320px;
-  border:none;
-  border-radius:10px;
-  margin-bottom:10px;
-  outline:none;
-}
-
-/* FILTER */
-.filter button{
-  margin:5px;
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-  background:#22c55e;
-  transition:0.3s;
-  font-weight:600;
-}
-
-.filter button:hover{
-  background:#16a34a;
-  transform:scale(1.05);
+/* JUDUL */
+h1 {
+  margin: 20px;
+  font-size: 28px;
+  animation: fadeDown 1s ease;
 }
 
 /* CONTAINER */
-.container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:15px;
-  padding:20px;
-  max-width:900px;
-  margin:auto;
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 /* CARD */
-.card{
-  background:rgba(15,23,42,0.85);
-  border-radius:14px;
-  padding:10px;
-  cursor:pointer;
-  transition:0.3s;
-  opacity:0;
-  transform:translateY(20px);
-  animation:fade 0.5s forwards;
+.card {
+  background: rgba(30, 41, 59, 0.8);
+  padding: 10px;
+  border-radius: 15px;
+  width: 150px;
+  cursor: pointer;
+  transition: 0.4s;
+
+  /* animasi masuk */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: muncul 0.8s forwards;
 }
 
-.card:hover{
-  transform:translateY(-6px) scale(1.03);
-  box-shadow:0 0 18px rgba(34,197,94,0.4);
+.card:hover {
+  transform: scale(1.1);
+
+  /* glow effect */
+  box-shadow: 0 0 15px #22c55e;
 }
 
-.card img{
-  width:100%;
-  border-radius:10px;
+.card img {
+  width: 100%;
+  border-radius: 10px;
 }
 
-.card p{
-  margin-top:8px;
-  font-weight:600;
+/* SEARCH */
+#search {
+  padding: 10px;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+/* FILTER */
+.filter button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  background: #22c55e;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.filter button:hover {
+  background: #16a34a;
 }
 
 /* POPUP */
-#popup{
-  position:fixed;
-  inset:0;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  background:rgba(0,0,0,0.7);
+#popup {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: 0.3s;
 }
 
-#popup.show{
-  display:flex;
+#popup.show {
+  opacity: 1;
 }
 
-.popup-content{
-  background:#0f172a;
-  padding:20px;
-  border-radius:15px;
-  width:85%;
-  max-width:320px;
+.popup-content {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 300px;
+  transform: scale(0.7);
+  transition: 0.3s;
 }
 
-.popup-content img{
-  width:100%;
-  border-radius:10px;
-  margin-bottom:10px;
+#popup.show .popup-content {
+  transform: scale(1);
 }
 
-.popup-content button{
-  margin-top:10px;
-  padding:8px 12px;
-  border:none;
-  border-radius:8px;
-  background:#ef4444;
-  color:white;
-  cursor:pointer;
+.popup-content img {
+  width: 100%;
+  border-radius: 10px;
 }
 
-/* FOOTER */
-footer{
-  margin:20px;
-  opacity:0.7;
-  font-size:13px;
-}
-
-/* ANIMATION */
-@keyframes fade{
-  to{
-    opacity:1;
-    transform:translateY(0);
+/* ANIMASI */
+@keyframes muncul {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+footer {
+  margin-top: 20px;
+  }
