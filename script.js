@@ -1,54 +1,93 @@
-const data = {
-  Alucard:{role:"Fighter",skill:"Lifesteal tinggi",kelebihan:"1v1 kuat",gambar:"alucard.jpg"},
-  Tigreal:{role:"Tank",skill:"CC kuat",kelebihan:"Tahan damage",gambar:"tigreal.jpg"},
-  Eudora:{role:"Mage",skill:"Burst damage",kelebihan:"Kill cepat",gambar:"eudora.jpg"},
-  Gusion:{role:"Assassin",skill:"Combo cepat",kelebihan:"Burst tinggi",gambar:"gusion.jpg"},
-  Miya:{role:"Marksman",skill:"Attack speed",kelebihan:"Late game kuat",gambar:"miya.jpg"},
-  Rafaela:{role:"Support",skill:"Heal",kelebihan:"Support tim",gambar:"rafaela.jpg"}
+let data = {
+  "Alucard": {
+    role: "Fighter",
+    skill: "Lifesteal tinggi & damage besar",
+    kelebihan: "Kuat 1 vs 1",
+    gambar: "alucard.jpg"
+  },
+
+  "Tigreal": {
+    role: "Tank",
+    skill: "Crowd control & tahan damage",
+    kelebihan: "Melindungi tim",
+    gambar: "tigreal.jpg"
+  },
+
+  "Eudora": {
+    role: "Mage",
+    skill: "Burst magic damage",
+    kelebihan: "Kill cepat",
+    gambar: "eudora.jpg"
+  },
+
+  "Gusion": {
+    role: "Assassin",
+    skill: "Combo cepat",
+    kelebihan: "Burst tinggi",
+    gambar: "gusion.jpg"
+  },
+
+  "Miya": {
+    role: "Marksman",
+    skill: "Attack speed tinggi",
+    kelebihan: "Late game kuat",
+    gambar: "miya.jpg"
+  },
+
+  "Rafaela": {
+    role: "Support",
+    skill: "Heal & slow musuh",
+    kelebihan: "Bantu tim",
+    gambar: "rafaela.jpg"
+  }
 };
 
-const container = document.getElementById("container");
+function showHero(nama) {
+  let hero = data[nama];
 
-function render(list){
-  container.innerHTML = "";
+  document.getElementById("judul").innerText = nama;
+  document.getElementById("gambarHero").src = hero.gambar;
 
-  list.forEach((h,i)=>{
-    container.innerHTML += `
-      <div class="card" style="animation-delay:${i*0.05}s" onclick="showHero('${h}')">
-        <img src="${data[h].gambar}">
-        <p>${h}</p>
-      </div>
-    `;
+  document.getElementById("info").innerHTML = `
+    <b>Role:</b> ${hero.role}<br>
+    <b>Skill:</b> ${hero.skill}<br>
+    <b>Kelebihan:</b> ${hero.kelebihan}
+  `;
+
+  let popup = document.getElementById("popup");
+  popup.style.display = "flex";
+
+  setTimeout(() => popup.classList.add("show"), 10);
+}
+
+function closePopup() {
+  let popup = document.getElementById("popup");
+  popup.classList.remove("show");
+
+  setTimeout(() => popup.style.display = "none", 300);
+}
+
+document.getElementById("search").addEventListener("input", function () {
+  let value = this.value.toLowerCase();
+
+  document.querySelectorAll(".card").forEach(card => {
+    let text = card.innerText.toLowerCase();
+    card.style.display = text.includes(value) ? "block" : "none";
+  });
+});
+
+function filterRole(role) {
+  document.querySelectorAll(".card").forEach(card => {
+    if (role === "all") {
+      card.style.display = "block";
+    } else {
+      card.style.display = card.dataset.role === role ? "block" : "none";
+    }
   });
 }
 
-render(Object.keys(data));
-
-function showHero(n){
-  const h = data[n];
-
-  document.getElementById("judul").innerText = n;
-  document.getElementById("gambarHero").src = h.gambar;
-
-  document.getElementById("info").innerHTML = `
-    <b>Role:</b> ${h.role}<br>
-    <b>Skill:</b> ${h.skill}<br>
-    <b>Kelebihan:</b> ${h.kelebihan}
-  `;
-
-  document.getElementById("popup").classList.add("show");
-}
-
-function closePopup(){
-  document.getElementById("popup").classList.remove("show");
-}
-
-document.getElementById("search").addEventListener("input", function(){
-  const v = this.value.toLowerCase();
-  render(Object.keys(data).filter(k => k.toLowerCase().includes(v)));
+window.addEventListener("click", function (e) {
+  if (e.target.id === "popup") {
+    closePopup();
+  }
 });
-
-function filterRole(role){
-  if(role === "all") return render(Object.keys(data));
-  render(Object.keys(data).filter(k => data[k].role === role));
-}
